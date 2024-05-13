@@ -2,8 +2,6 @@
 using OpenAI_API;
 using OpenAI_API.Completions;
 
-Console.WriteLine("Hello, World!");
-
 string openAiApiKey = "";
 string message = Console.ReadLine();
 string aiResponse = await OpenAi(message);
