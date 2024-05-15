@@ -11,7 +11,7 @@ namespace OpenAIConsole
         static async Task Main(string[] args)
         {
             // Initialize Azure OpenAI service client
-            var client = new AssistantsClient("secreatAPiKey");
+            var client = new AssistantsClient(null);
 
             // Prompt the user to enter the file path
             Console.WriteLine("Please provide the path to the file:");
