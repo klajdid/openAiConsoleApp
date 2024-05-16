@@ -54,19 +54,21 @@ public class AssistantApiClient
         };
 
         var content = new StringContent(JsonConvert.SerializeObject(requestData), Encoding.UTF8, "application/json");
-        var response = await _httpClient.PostAsync("https://api.openai.com/v1/threads", content);
+        var response = await _httpClient.PostAsync("https://api.openai.com/v1/threads", null);
 
         var responseContent = await response.Content.ReadAsStringAsync();
         JObject result = (JObject)JsonConvert.DeserializeObject(responseContent);
 
         return result.GetValue("id").ToString();
     }
-
-    public async Task<JObject> CheckStatus(string threadId, string runId)
+    
+    public async Task<string> CheckStatus(string threadId, string runId)
     {
         HttpResponseMessage response = await _httpClient.GetAsync($"https://api.openai.com/v1/threads/{threadId}/runs/{runId}");
         var responseContent = await response.Content.ReadAsStringAsync();
-        return (JObject)JsonConvert.DeserializeObject(responseContent);
+        var result = (JObject)JsonConvert.DeserializeObject(responseContent);
+        return result.GetValue("status").ToString();
+
     }
 
     public async Task<string> AskAssistant(string threadId, string assistantId, string question)
@@ -79,6 +81,7 @@ public class AssistantApiClient
 
         var content = new StringContent(JsonConvert.SerializeObject(messageData), Encoding.UTF8, "application/json");
         var response = await _httpClient.PostAsync($"https://api.openai.com/v1/threads/{threadId}/messages", content);
+        // var response = await _httpClient.PostAsync("https://api.openai.com/v1/threads", null);
         var responseContent = await response.Content.ReadAsStringAsync();
         JObject result = (JObject)JsonConvert.DeserializeObject(responseContent);
 
@@ -99,7 +102,7 @@ public class AssistantApiClient
     {
         HttpResponseMessage response = await _httpClient.GetAsync($"https://api.openai.com/v1/threads/{threadId}/messages");
         var responseContent = await response.Content.ReadAsStringAsync();
-        Console.WriteLine(responseContent);
+        // Console.WriteLine(responseContent);
         return (JObject)JsonConvert.DeserializeObject(responseContent);
     }
 }
