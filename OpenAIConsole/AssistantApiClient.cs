@@ -16,7 +16,7 @@ public class AssistantApiClient
     {
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
-        _httpClient.DefaultRequestHeaders.Add("OpenAI-Beta", "assistants=v1");
+        _httpClient.DefaultRequestHeaders.Add("OpenAI-Beta", "assistants=v2");
         _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 
@@ -42,6 +42,12 @@ public class AssistantApiClient
     public async Task<JObject> GetAssistants()
     {
         HttpResponseMessage response = await _httpClient.GetAsync("https://api.openai.com/v1/assistants");
+        var responseContent = await response.Content.ReadAsStringAsync();
+        return (JObject)JsonConvert.DeserializeObject(responseContent);
+    }
+    public async Task<JObject> GetAssistantById(string assistantId)
+    {
+        HttpResponseMessage response = await _httpClient.GetAsync($"https://api.openai.com/v1/assistants/{assistantId}");
         var responseContent = await response.Content.ReadAsStringAsync();
         return (JObject)JsonConvert.DeserializeObject(responseContent);
     }

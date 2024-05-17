@@ -2,37 +2,53 @@
 using OpenAIConsole;
 
 String name = "testAssist";
-// String assistantId = "asst_KQLFmyDt3GE1JFFpYHp9GUsM"; mauro assistant
-String assistantId = "asst_t5PHtvieZ4hRqxtOWcTMnZVN";
-String threadId = "thread_quGXKsRp7ThHayDRheQMkZS2";
-string question = Console.ReadLine() ?? "";
+// String assistantId = "asst_pDNovwxYdGDcpspw3j58UYAl"; mauro assistant
+String assistantId = "asst_pDNovwxYdGDcpspw3j58UYAl"; //"asst_t5PHtvieZ4hRqxtOWcTMnZVN";
+String threadId = "thread_no4Jy1P2x9BoNYH2ugrrtHz5";//"thread_quGXKsRp7ThHayDRheQMkZS2";
 string status = "";
 
-var assistantApiClient = new AssistantApiClient("ENTER-YOUR-API-KEY-HERE");
-
+Console.WriteLine("Press y to continue or q to quit the console");
+var assistantApiClient = new AssistantApiClient("PASTE HERE THE API KEY");
 // var assId = await assistantApiClient.CreateAssistant("when i ask you questions add to your answer in the end three dots and one question mark only when the question is in italian.", "testAssistant", "gpt-3.5-turbo");
 // Console.WriteLine(assId);
+
 // var threadId = await assistantApiClient.CreateThread(assistantId);
 // Console.WriteLine(threadId);
-var runId = await assistantApiClient.AskAssistant(threadId, assistantId, question);
-do
-{
-   status = await assistantApiClient.CheckStatus(threadId, runId);
-   // Console.WriteLine(status);
-} while (!status.Equals("completed") && !status.Equals("failed"));
 
-if (status.Equals("completed"))
+// var assistants = await assistantApiClient.GetAssistants();
+// Console.WriteLine(assistants);
+
+// var assisstant = await assistantApiClient.GetAssistantById(assistantId);
+// Console.WriteLine(assisstant);
+
+#region AssistantMessage
+var userRequest = Console.ReadLine();
+while (userRequest.ToLower().Equals("y"))
 {
-   var result = await assistantApiClient.GetResults(threadId);//quando mi devo vaccinare per l'epatite?
-   var jsonObject = JObject.Parse(result.ToString());
-   
-   string value = (string)jsonObject["data"][0]["content"][0]["text"]["value"];
-   Console.WriteLine(value); 
+    string question = Console.ReadLine() ?? "";
+    if (question.ToLower().Equals("q"))
+        break;
+    
+    var runId = await assistantApiClient.AskAssistant(threadId, assistantId, question);
+    do
+    {
+        status = await assistantApiClient.CheckStatus(threadId, runId);
+        // Console.WriteLine(status);
+    } while (!status.Equals("completed") && !status.Equals("failed"));
+
+    if (status.Equals("completed"))
+    {
+        var result = await assistantApiClient.GetResults(threadId);//quando mi devo vaccinare per l'epatite?
+        var jsonObject = JObject.Parse(result.ToString());
+
+        string value = (string)jsonObject["data"][0]["content"][0]["text"]["value"];
+        Console.WriteLine(value); 
+    }
+    else
+        Console.WriteLine("Something went wrong!");
 }
-else
-{
-   Console.WriteLine("Something went wrong!");
-}
+
+#endregion
 
 #region FileUpload
 // string key = "";

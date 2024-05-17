@@ -26,3 +26,14 @@ C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\obj\Debug\net7.0\refint\
 C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\obj\Debug\net7.0\OpenAIConsole.pdb
 C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\obj\Debug\net7.0\OpenAIConsole.genruntimeconfig.cache
 C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\obj\Debug\net7.0\ref\OpenAIConsole.dll
+C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\bin\Debug\net7.0\Azure.AI.OpenAI.dll
+C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\bin\Debug\net7.0\Azure.Core.dll
+C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\bin\Debug\net7.0\UglyToad.PdfPig.Core.dll
+C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\bin\Debug\net7.0\UglyToad.PdfPig.DocumentLayoutAnalysis.dll
+C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\bin\Debug\net7.0\UglyToad.PdfPig.Fonts.dll
+C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\bin\Debug\net7.0\UglyToad.PdfPig.Package.dll
+C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\bin\Debug\net7.0\UglyToad.PdfPig.Tokenization.dll
+C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\bin\Debug\net7.0\UglyToad.PdfPig.Tokens.dll
+C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\bin\Debug\net7.0\UglyToad.PdfPig.dll
+C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\bin\Debug\net7.0\System.ClientModel.dll
+C:\Users\User\RiderProjects\OpenAIConsole\OpenAIConsole\bin\Debug\net7.0\System.Memory.Data.dll
